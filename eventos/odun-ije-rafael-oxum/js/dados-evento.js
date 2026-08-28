@@ -51,7 +51,7 @@ const EVENTO = {
         brasaoAseEsmeralda: "img/brasao1.png",
         brasaoAseTopazio: "img/brasao2.png",
         favicon: "img/favicon/logo-evento.ico",
-        imagemCompartilhamento: "img/convite.png"
+        imagemCompartilhamento: "img/convite-compartilhamento.jpg"
     },
 
     subtituloHero: "Sete anos de caminhada religiosa",
