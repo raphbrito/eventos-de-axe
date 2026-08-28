@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171411">
+  <title>Painel administrativo | Odún Ìjẹ</title>
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-editorial.css">
+  <link rel="stylesheet" href="css/institutional-footer.css">
+</head>
+<body class="odun-dashboard">
+  <main id="login" class="login-screen" hidden>
+    <section class="login-card" aria-labelledby="login-title">
+      <a class="back-to-event" href="index.html">← Voltar ao convite</a>
+      <img class="login-logo" src="img/logo-evento.png" alt="Odún Ìjẹ — Rafael de Oxum">
+      <p class="eyebrow">Área reservada</p>
+      <h1 id="login-title">Painel do evento</h1>
+      <p class="login-copy">Acesse as confirmações e a lista de convidados do Odún Ìjẹ.</p>
+      <form id="loginForm" class="login-form">
+        <label for="username">E-mail</label>
+        <input id="username" name="username" type="email" autocomplete="username" required>
+        <label for="password">Senha</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button type="submit" class="gold-button">Entrar no painel</button>
+      </form>
+    </section>
+  </main>
+
+  <main id="dashboard" class="dashboard-screen" hidden>
+    <div class="dash-shell">
+      <header class="dash-header">
+        <a class="dash-brand" href="index.html" aria-label="Voltar ao convite do Odún Ìjẹ">
+          <img src="img/logo-evento.png" alt="Odún Ìjẹ">
+          <span>Odún Ìjẹ</span>
+        </a>
+        <nav class="dash-nav" aria-label="Navegação administrativa">
+          <a href="index.html">Página pública</a>
+          <button id="logoutButton" type="button" class="outline-button">Sair</button>
+        </nav>
+      </header>
+
+      <section class="dash-intro" aria-labelledby="dashboard-title">
+        <p class="eyebrow">Gestão de convidados</p>
+        <h1 id="dashboard-title">Odún Ìjẹ · Rafael de Oxum</h1>
+        <p>Acompanhe as confirmações recebidas e prepare a recepção com serenidade.</p>
+      </section>
+
+      <section class="stats-section" aria-labelledby="stats-title">
+        <div class="section-heading"><div><p class="eyebrow">Visão geral</p><h2 id="stats-title">Estatísticas do evento</h2></div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span>Respostas recebidas</span><strong id="totalRsvp">—</strong></article>
+          <article class="stat-card"><span>Total de pessoas presentes</span><strong id="totalPeople">—</strong></article>
+          <article class="stat-card"><span>Convidados confirmados</span><strong id="totalConfirmed">—</strong></article>
+          <article class="stat-card"><span>Total de acompanhantes</span><strong id="totalCompanions">—</strong></article>
+          <article class="stat-card"><span>Taxa de confirmação</span><strong id="confirmationRate">—</strong></article>
+          <article class="stat-card"><span>Média de acompanhantes</span><strong id="averageCompanions">—</strong></article>
+          <article class="stat-card stat-card-text"><span>Última resposta</span><strong id="lastResponse">—</strong></article>
+          <article class="stat-card stat-card-text"><span>Última atualização</span><strong id="statsLastUpdate">—</strong></article>
+        </div>
+      </section>
+
+      <section class="guests-section" aria-labelledby="guests-title">
+        <div class="section-heading guests-heading">
+          <div><p class="eyebrow">RSVP</p><h2 id="guests-title">Lista de convidados</h2><p>Relação das pessoas que responderam ao formulário, em ordem alfabética.</p></div>
+          <div class="export-actions" aria-label="Exportar lista de convidados">
+            <button id="exportPdf" type="button" class="outline-button">Exportar PDF</button>
+            <button id="exportReceptionPdf" type="button" class="outline-button">Lista de recepção</button>
+            <button id="exportExcel" type="button" class="gold-button">Exportar Excel</button>
+          </div>
+        </div>
+        <div class="table-wrap" tabindex="0"><table><thead><tr id="guestTableHeader"></tr></thead><tbody id="guestTableBody"></tbody></table></div>
+      </section>
+
+      <footer class="institutional-footer">
+        <p>© <span id="currentYear"></span> · Odún Ìjẹ</p>
+        <p class="system-name">Eventos de Axé</p>
+        <div class="system-links"><a id="systemGithub" href="#" target="_blank" rel="noopener">GitHub</a><span>•</span><a id="systemRepository" href="#" target="_blank" rel="noopener">Repositório</a></div>
+      </footer>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"><span id="toastMessage"></span></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="../../assets/js/config.js"></script>
+  <script src="js/dados-evento.js"></script>
+  <script src="js/exports.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/system.js"></script>
+</body>
+</html>

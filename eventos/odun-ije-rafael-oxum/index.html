@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171719">
+  <meta name="description" content="Um convite para celebrar os sete anos de iniciação religiosa de Rafael de Oxum.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Odún Ìjẹ · Rafael de Oxum">
+  <meta property="og:description" content="Um encontro para marcar sete anos de caminhada religiosa de Rafael de Oxum.">
+  <meta property="og:image" content="img/convite.png">
+  <title>Odún Ìjẹ · Rafael de Oxum</title>
+  <link rel="icon" href="img/brasao2.png">
+  <link rel="apple-touch-icon" href="img/brasao2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/public-editorial.css">
+  <link rel="stylesheet" href="css/institutional-footer.css">
+</head>
+<body class="odun-public">
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <a class="admin-entry" href="dashboard.html" aria-label="Acesso administrativo"><img id="dashboardLogo" src="img/brasao2.png" alt=""></a>
+
+  <header class="hero">
+    <div class="adinkra adinkra-left" aria-hidden="true">✦</div>
+    <div class="adinkra adinkra-right" aria-hidden="true">✦</div>
+    <p id="heroSubtitle" class="eyebrow">Sete anos de caminhada religiosa</p>
+    <h1 id="heroTitle">Odún Ìjẹ</h1>
+    <p id="heroCelebrant" class="hero-name">Rafael de Oxum</p>
+    <p id="heroMessage" class="hero-message">Um convite para estar presente em uma data que guarda gratidão, memória e continuidade.</p>
+    <figure class="hero-image"><img src="img/convite.png" alt="Convite oficial do Odún Ìjẹ de Rafael de Oxum"></figure>
+    <a class="scroll-cue" href="#conteudo">Veja os detalhes <span aria-hidden="true">↓</span></a>
+  </header>
+
+  <main id="conteudo">
+    <section class="intro section">
+      <p class="section-kicker">Com muito Àṣẹ</p>
+      <h2>Um dia para estar junto</h2>
+      <p>O Odún Ìjẹ marca sete anos de iniciação religiosa de Rafael de Oxum. Sua presença ajudará a tornar esta data ainda mais significativa.</p>
+    </section>
+
+    <section class="details section" aria-labelledby="details-title">
+      <div class="section-heading"><p class="section-kicker">Anote na agenda</p><h2 id="details-title">Quando e onde nos encontramos</h2></div>
+      <dl class="details-list">
+        <div><dt>Data</dt><dd id="eventDate">—</dd></div>
+        <div><dt>Horário</dt><dd id="eventTime">—</dd></div>
+        <div><dt>Local</dt><dd id="eventLocation">—</dd></div>
+        <div><dt>Endereço</dt><dd id="eventAddress">—</dd></div>
+      </dl>
+      <div class="countdown" aria-label="Contagem regressiva até o evento">
+        <div><strong id="days">000</strong><span>Dias</span></div>
+        <div><strong id="hours">00</strong><span>Horas</span></div>
+        <div><strong id="minutes">00</strong><span>Minutos</span></div>
+        <div><strong id="seconds">00</strong><span>Segundos</span></div>
+      </div>
+    </section>
+
+    <section class="rsvp section" id="rsvp" aria-labelledby="rsvp-title">
+      <div class="section-heading"><p class="section-kicker">Confirmação</p><h2 id="rsvp-title">Conte com a gente</h2><p id="rsvpMessage">Sua resposta ajuda a preparar a recepção com o cuidado que cada pessoa merece.</p></div>
+      <button id="btnRSVP" type="button">Confirmar presença</button>
+    </section>
+
+    <section class="location section" aria-labelledby="location-title">
+      <div class="section-heading"><p class="section-kicker">Como chegar</p><h2 id="location-title">Planeje seu caminho</h2><p id="directionsDescription">Abra a rota no aplicativo de navegação que você preferir.</p></div>
+      <div class="link-buttons"><button id="btnGoogleMaps" type="button">Google Maps</button><button id="btnWaze" type="button">Waze</button></div>
+    </section>
+
+    <section class="houses section" aria-labelledby="houses-title">
+      <div class="section-heading"><p class="section-kicker">Nossas casas</p><h2 id="houses-title">Referências desta celebração</h2><p>Conheça as casas que fazem parte da trajetória e da realização deste encontro.</p></div>
+      <div class="symbol-grid"><figure><img id="aseEsmeraldaLogo" src="img/brasao1.png" alt="Brasão do Igbá Àṣẹ Iyá Afẹfẹ Igbin Lórun"></figure><figure><img id="aseTopazioLogo" src="img/brasao2.png" alt="Brasão do Ilé Àṣẹ Iyá Ypondá"></figure></div>
+    </section>
+  </main>
+
+  <footer class="institutional-footer"><p>© <span id="currentYear"></span> · Odún Ìjẹ</p><p class="system-name">Eventos de Axé</p><div class="system-links"><a id="systemGithub" href="#" target="_blank" rel="noopener">GitHub</a><span>•</span><a id="systemRepository" href="#" target="_blank" rel="noopener">Repositório</a></div></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"><strong id="toastTitle"></strong><span id="toastMessage"></span><button id="toastClose" type="button" aria-label="Fechar">×</button></div>
+  <script src="js/dados-evento.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/system.js"></script>
+</body>
+</html>
