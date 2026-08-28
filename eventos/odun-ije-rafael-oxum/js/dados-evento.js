@@ -8,7 +8,7 @@ const EVENTO = {
     tituloEvento: "Odún Ìjé • Rafael de Oxum",
     nomeEvento: "Odún Ìjé",
     celebrante: "Rafael de Oxum",
-    descricao: "Celebração dos 7 anos de iniciação religiosa de Rafael de Oxum.",
+    descricao: "Você é nosso convidado para celebrar conosco! No dia 21 de novembro de 2026, às 17h.",
     slug: "odun-ije-rafael-oxum",
 
     // Use o padrão AAAA-MM-DD para evitar ambiguidades entre navegadores.
