@@ -40,8 +40,8 @@ const EVENTO = {
 
     // Cole aqui os links completos dos perfis das casas para tornar os brasões clicáveis.
     casas: {
-        aseEsmeraldaInstagram: "",
-        aseTopazioInstagram: ""
+        aseEsmeraldaInstagram: "https://www.instagram.com/aseesmeralda/",
+        aseTopazioInstagram: "https://www.instagram.com/asetopazio/"
     },
 
     identidadeVisual: {

@@ -82,7 +82,8 @@ function renderEvent() {
     document.querySelector('meta[name="description"]')?.setAttribute("content", EVENTO.descricao);
     document.querySelector('meta[property="og:title"]')?.setAttribute("content", EVENTO.tituloEvento);
     document.querySelector('meta[property="og:description"]')?.setAttribute("content", EVENTO.descricao);
-    document.querySelector('meta[property="og:image"]')?.setAttribute("content", visual.imagemCompartilhamento || visual.convite || "");
+    const shareImage = visual.imagemCompartilhamento || visual.convite || "";
+    document.querySelector('meta[property="og:image"]')?.setAttribute("content", shareImage ? new URL(shareImage, window.location.href).href : "");
     document.querySelector('link[rel="icon"]')?.setAttribute("href", visual.favicon || visual.brasaoAseTopazio || "");
     document.querySelector('link[rel="apple-touch-icon"]')?.setAttribute("href", visual.favicon || visual.brasaoAseTopazio || "");
     if (visual.fundo) {
