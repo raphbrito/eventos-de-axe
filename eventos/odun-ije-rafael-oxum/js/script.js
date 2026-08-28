@@ -62,6 +62,18 @@ function setImage(id, source, alt) {
     if (alt) image.alt = alt;
 }
 
+function setExternalLink(id, url) {
+    const link = document.getElementById(id);
+    if (!link) return;
+    if (!url) {
+        link.removeAttribute("href");
+        link.setAttribute("aria-disabled", "true");
+        return;
+    }
+    link.href = url;
+    link.removeAttribute("aria-disabled");
+}
+
 function renderEvent() {
     const date = eventDate();
     const visual = EVENTO.identidadeVisual ?? {};
@@ -94,6 +106,8 @@ function renderEvent() {
     setImage("dashboardLogo", visual.brasaoAseTopazio, "Dashboard");
     setImage("aseEsmeraldaLogo", visual.brasaoAseEsmeralda);
     setImage("aseTopazioLogo", visual.brasaoAseTopazio);
+    setExternalLink("aseEsmeraldaInstagram", EVENTO.casas?.aseEsmeraldaInstagram);
+    setExternalLink("aseTopazioInstagram", EVENTO.casas?.aseTopazioInstagram);
 }
 
 function initializeCountdown() {
