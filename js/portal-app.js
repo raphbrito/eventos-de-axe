@@ -57,11 +57,33 @@ async function requestMyEvents(force = false) {
 }
 
 function home() {
-  shell(`<section class="institutional-hero"><p class="eyebrow">Um projeto criado dentro do Axé</p><h1>Eventos que acolhem histórias, memórias e celebrações.</h1><p class="institutional-lead">Mais do que um sistema para eventos, o Eventos de Axé conta uma história de organização, tecnologia e respeito às tradições.</p></section>
-    <section class="institutional-note"><h2>Como tudo começou</h2><p>O Eventos de Axé nasceu de uma necessidade real durante a preparação do próprio Òdún Ìjé de Rafael Brito.</p><p>Ao desenvolver um convite digital para esse momento tão importante, surgiu a vontade de transformar aquela solução em algo que pudesse ser reutilizado por outras casas e outros dirigentes.</p><p>Durante a organização de um evento religioso, ficou evidente como era difícil controlar confirmações de presença, compartilhar informações importantes e manter tudo organizado utilizando apenas mensagens de WhatsApp e planilhas.</p><p>Foi então que surgiu a ideia de criar uma plataforma simples, pensada especialmente para atender às necessidades das comunidades de matriz africana. Aos poucos, aquilo que seria apenas um convite passou a se transformar em uma plataforma completa para eventos religiosos.</p></section>
-    <section class="institutional-grid"><article><h2>O que é o Eventos de Axé?</h2><p>O Eventos de Axé é uma plataforma para gerenciamento de eventos religiosos. Cada evento pode ter uma página que proporciona ao convidado uma experiência maior do que apenas receber um convite.</p><p>É possível disponibilizar informações, compartilhar localização, receber confirmações de presença e acompanhar tudo em uma área administrativa simples e intuitiva.</p></article><article><h2>Nossos princípios</h2><p>O objetivo é facilitar a organização dos eventos sem perder o respeito às tradições e à identidade de cada casa.</p><ul><li>Respeito às tradições religiosas.</li><li>Simplicidade de utilização.</li><li>Organização e acessibilidade.</li><li>Gratuidade do projeto.</li><li>Código aberto.</li></ul></article><article><h2>Um projeto em evolução</h2><p>O Eventos de Axé ainda está em desenvolvimento. Novas funcionalidades serão adicionadas gradualmente, sempre buscando facilitar a organização dos eventos sem tornar o sistema complexo.</p><p>A ideia é crescer junto com as necessidades das comunidades que utilizarem a plataforma.</p></article></section>
-    <section class="institutional-note"><h2>Uma base para muitos encontros</h2><p>O sistema cresce junto com os eventos que hospeda: cada celebração mantém sua personalidade, enquanto a gestão permanece simples, segura e centralizada.</p></section>
-    <section class="institutional-note"><h2>Quem desenvolve?</h2><p>O Eventos de Axé é um projeto independente idealizado e desenvolvido por Rafael Brito.</p><p>Apaixonado por tecnologia, organização de processos e pelas religiões de matriz africana, Rafael uniu essas experiências para criar uma ferramenta que pudesse contribuir com a organização dos eventos religiosos de forma simples, moderna e respeitosa.</p><div class="card-actions"><a class="button secondary" href="https://instagram.com/raphbrito" target="_blank" rel="noopener">Instagram</a><a class="button secondary" href="https://github.com/raphbrito" target="_blank" rel="noopener">GitHub</a><a class="button secondary" href="https://github.com/raphbrito/Eventos-de-Axe" target="_blank" rel="noopener">Repositório</a></div></section>`, 'home-panel');
+  shell(`<section class="system-hero">
+      <p class="system-kicker">Um projeto criado dentro do Axé</p>
+      <h1>Celebrar também é cuidar de cada detalhe.</h1>
+      <p class="system-lead">Uma plataforma aberta para transformar convites, informações e confirmações de presença em experiências mais acolhedoras, organizadas e respeitosas.</p>
+      <p class="system-hero-note"><span aria-hidden="true">✦</span> Tecnologia a serviço das celebrações e das comunidades de matriz africana.</p>
+    </section>
+    <section class="editorial-section story-layout">
+      <div><p class="system-overline">Como tudo começou</p><h2>Uma necessidade real se tornou caminho.</h2></div>
+      <div class="story-copy"><p>O Eventos de Axé nasceu durante a preparação do próprio Odún Ìjẹ de Rafael Brito. Ao criar um convite digital para um momento tão importante, surgiu a vontade de transformar aquela solução em algo que pudesse acompanhar outras casas, dirigentes e celebrações.</p><p>Na organização de eventos religiosos, confirmações de presença, informações importantes e orientações aos convidados muitas vezes ficam dispersas entre mensagens e planilhas. A plataforma surgiu para reunir esse cuidado em um só lugar, sem perder a identidade de cada encontro.</p><p>Aos poucos, aquilo que seria apenas um convite passou a se transformar em uma base para eventos que desejam acolher melhor, organizar com mais calma e comunicar com clareza.</p></div>
+    </section>
+    <section class="principles">
+      <div class="principles-heading"><p class="system-overline">O que é o Eventos de Axé</p><h2>Uma estrutura simples para experiências singulares.</h2><p>Cada evento mantém sua própria voz e aparência; por trás dela, uma gestão centralizada para informações, localização, RSVP e convidados.</p></div>
+      <div class="principles-grid">
+        <article class="principle"><span>01</span><h3>Identidade de cada casa</h3><p>Páginas feitas para refletir a celebração, os símbolos e a forma de receber de cada comunidade.</p></article>
+        <article class="principle"><span>02</span><h3>Organização com leveza</h3><p>Informações, confirmação de presença e acompanhamento reunidos sem tornar o processo complexo.</p></article>
+        <article class="principle"><span>03</span><h3>Um projeto aberto</h3><p>Gratuito, em evolução constante e construído para crescer junto com as necessidades de quem o utiliza.</p></article>
+      </div>
+    </section>
+    <section class="system-statement">
+      <p class="system-overline">Uma base para muitos encontros</p><h2>Cada celebração mantém sua personalidade. A organização encontra um mesmo lugar.</h2>
+      <p>O Eventos de Axé cresce junto com os eventos que hospeda, buscando tornar a preparação mais clara e a experiência de cada convidado mais cuidadosa.</p>
+    </section>
+    <section class="developer">
+      <div class="developer-copy"><p class="system-overline">Quem desenvolve</p><h2>Idealizado por Rafael Brito.</h2><p>Apaixonado por tecnologia, organização de processos e pelas religiões de matriz africana, Rafael uniu essas experiências para criar uma ferramenta simples, moderna e respeitosa para eventos religiosos.</p></div>
+      <div class="developer-links"><a href="https://instagram.com/raphbrito" target="_blank" rel="noopener">Instagram</a><a href="https://github.com/raphbrito" target="_blank" rel="noopener">GitHub</a><a href="https://github.com/raphbrito/Eventos-de-Axe" target="_blank" rel="noopener">Repositório</a></div>
+    </section>
+    <footer class="system-footer"><p>© ${new Date().getFullYear()} Eventos de Axé</p><p>·</p><p>Uma plataforma para convites, RSVP e celebrações.</p></footer>`, 'home-panel');
 }
 
 function login() {
