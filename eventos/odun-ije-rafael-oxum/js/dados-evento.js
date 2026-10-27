@@ -12,7 +12,7 @@ const EVENTO = {
     slug: "odun-ije-rafael-de-oxum",
 
     // Use o padrão AAAA-MM-DD para evitar ambiguidades entre navegadores.
-    data: "2027-01-31",
+    data: "2027-01-30",
     horario: "17:00",
 
     rsvp: {
