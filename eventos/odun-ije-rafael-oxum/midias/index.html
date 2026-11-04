@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171719">
+  <meta name="description" content="Envie mídias do Odún Ìjẹ de Rafael de Oxum.">
+  <link rel="canonical" href="https://raphbrito.github.io/eventos-de-axe/eventos/odun-ije-rafael-oxum/midias/">
+  <title>Mídias do encontro · Odún Ìjẹ</title>
+  <link rel="icon" href="../img/brasao2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/fotos.css">
+  <script>if (window.location.pathname.endsWith('/index.html')) window.location.replace(window.location.pathname.replace(/index\.html$/, '') + window.location.search + window.location.hash);</script>
+</head>
+<body>
+  <a class="skip-link" href="#envio">Ir para o envio</a>
+  <header class="page-header"><a href="../">← Voltar ao convite</a><img src="../img/brasao2.png" alt="Odún Ìjẹ · Rafael de Oxum"></header>
+  <main id="envio" class="page-shell">
+    <section class="intro"><p class="eyebrow">Memórias da celebração</p><h1>Compartilhe suas mídias</h1><p>Envie fotos, vídeos e áudios para a organização do Odún Ìjẹ. Seus arquivos serão guardados de forma privada e não serão publicados automaticamente.</p></section>
+    <section class="upload-card" aria-labelledby="identity-title">
+      <div class="card-heading"><p class="eyebrow">Sua identificação</p><h2 id="identity-title">Quem está compartilhando?</h2></div>
+      <div id="savedIdentity" class="saved-identity" hidden><p>Você está enviando como <strong id="savedIdentityName"></strong>.</p><button id="changeIdentity" class="text-button" type="button">Trocar identificação</button></div>
+      <form id="uploadForm" novalidate>
+        <div id="identityFields"><label for="fullName">Nome e sobrenome</label><input id="fullName" name="fullName" autocomplete="name" maxlength="120" required aria-describedby="nameHelp nameError"><p id="nameHelp" class="help">Usaremos este nome apenas para organizar sua pasta de envios.</p><p id="nameError" class="error" role="alert" hidden></p></div>
+        <fieldset><legend>Selecione as mídias</legend><p class="help">Fotos, vídeos e áudios comuns de celular. Mantenha esta página aberta até todos os arquivos terminarem de enviar.</p><label class="file-picker" for="mediaFiles"><span>Escolher fotos, vídeos ou áudios</span><small>Você pode selecionar vários arquivos</small></label><input id="mediaFiles" name="mediaFiles" type="file" multiple accept="image/*,video/*,audio/*,.heic,.heif,.mov,.m4a,.3gp,.webm,.opus" hidden></fieldset>
+        <ul id="fileList" class="file-list" aria-live="polite"></ul><p id="emptyFiles" class="empty-files">Nenhum arquivo selecionado.</p><div id="turnstileContainer" class="turnstile-container"></div><p id="serviceStatus" class="service-status" role="status"></p><button id="submitUpload" class="submit-button" type="submit" disabled>Enviar arquivos</button>
+      </form>
+    </section>
+    <aside class="notice"><strong>Finalidade do envio.</strong> Os registros serão compartilhados apenas com a organização do evento. Não envie conteúdos de terceiros sem autorização.</aside>
+    <footer class="media-footer"><a href="../../../politica-de-privacidade.html">Política de Privacidade</a><span aria-hidden="true">·</span><a href="../../../termos-de-uso.html">Termos de Uso</a></footer>
+  </main>
+  <script src="../js/dados-evento.js"></script><script src="media-config.js"></script><script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script><script src="fotos.js"></script>
+</body>
+</html>
