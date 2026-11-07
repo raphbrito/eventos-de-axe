@@ -42,12 +42,6 @@
   </header>
 
   <main id="conteudo">
-    <section class="intro section">
-      <p class="section-kicker">Com muito Àṣẹ</p>
-      <h2>Um dia para estar junto</h2>
-      <p>O Odún Ìjẹ marca sete anos de iniciação religiosa de Rafael de Oxum. Sua presença ajudará a tornar esta data ainda mais significativa.</p>
-    </section>
-
     <section class="details section" aria-labelledby="details-title">
       <div class="section-heading"><p class="section-kicker">Anote na agenda</p><h2 id="details-title">Quando e onde nos encontramos</h2></div>
       <dl class="details-list">
@@ -62,26 +56,31 @@
         <div><strong id="minutes">00</strong><span>Minutos</span></div>
         <div><strong id="seconds">00</strong><span>Segundos</span></div>
       </div>
+      <aside class="attire-note" aria-labelledby="attire-title">
+        <p class="section-kicker">Orientações de vestimenta</p>
+        <p id="attire-title">Para esta celebração, pedimos a gentileza de priorizar trajes brancos ou em tons claros. Evite roupas pretas, vermelhas ou em tonalidades escuras. Também recomendamos roupas discretas, sem peças curtas ou decotadas, em respeito ao caráter religioso deste momento.</p>
+      </aside>
     </section>
 
-    <section class="rsvp section" id="rsvp" aria-labelledby="rsvp-title">
-      <div class="section-heading"><p class="section-kicker">Confirmação</p><h2 id="rsvp-title">Conte com a gente</h2><p id="rsvpMessage">Sua resposta ajuda a preparar a recepção com o cuidado que cada pessoa merece.</p></div>
-      <button id="btnRSVP" type="button">Confirmar presença</button>
-    </section>
-
-    <section class="calendar section" aria-labelledby="memories-title">
-      <div class="section-heading"><p class="section-kicker">Memórias do encontro</p><h2 id="memories-title">Compartilhe suas mídias</h2><p>Depois da celebração, envie com segurança fotos, vídeos e áudios que quiser guardar conosco.</p></div>
-      <a href="midias/" style="display:inline-block;border:1px solid #8d6816;color:#332914;padding:1rem 1.45rem;font:600 .72rem Montserrat,Arial,sans-serif;letter-spacing:.1em;text-decoration:none">Enviar mídias</a>
-    </section>
-
-    <section class="calendar section" aria-labelledby="calendar-title">
-      <div class="section-heading"><p class="section-kicker">Para lembrar</p><h2 id="calendar-title">Guarde esta data no seu calendário</h2><p>Adicione o evento ao calendário do seu celular. O arquivo já inclui lembretes para uma semana antes, no dia anterior e às 13h do próprio dia.</p></div>
-      <button id="btnCalendar" type="button">Adicionar ao calendário</button>
+    <section class="attendance section" id="rsvp" aria-labelledby="rsvp-title">
+      <div class="section-heading"><p class="section-kicker">Confirmação</p><h2 id="rsvp-title">Confirme sua presença</h2><p id="rsvpMessage">Sua presença tornará esta celebração ainda mais especial. Confirme sua participação e, se desejar, adicione o evento ao calendário para receber os lembretes.</p></div>
+      <div class="attendance-actions"><button id="btnRSVP" type="button">Confirmar presença</button><button id="btnCalendar" class="calendar-button" type="button">Adicionar ao calendário</button></div>
     </section>
 
     <section class="location section" aria-labelledby="location-title">
       <div class="section-heading"><p class="section-kicker">Como chegar</p><h2 id="location-title">Planeje seu caminho</h2><p id="directionsDescription">Abra a rota no aplicativo de navegação que você preferir.</p></div>
       <div class="link-buttons"><button id="btnGoogleMaps" type="button">Google Maps</button><button id="btnWaze" type="button">Waze</button></div>
+    </section>
+
+    <section class="memories section" aria-labelledby="memories-title">
+      <div class="section-heading"><p class="section-kicker">Memórias do encontro</p><h2 id="memories-title">Compartilhe suas mídias</h2><p>Depois da celebração, envie com segurança fotos, vídeos e áudios que quiser guardar conosco.</p></div>
+      <a class="memory-link" href="midias/">Enviar mídias</a>
+    </section>
+
+    <section class="intro section" aria-labelledby="celebration-title">
+      <p class="section-kicker">Com muito Àṣẹ</p>
+      <h2 id="celebration-title">Um dia para estar junto</h2>
+      <p>O Odún Ìjẹ marca sete anos de iniciação religiosa de Rafael de Oxum. Sua presença ajudará a tornar esta data ainda mais significativa.</p>
     </section>
 
     <section class="houses section" aria-labelledby="houses-title">
