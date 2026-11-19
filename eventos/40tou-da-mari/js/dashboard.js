@@ -51,29 +51,19 @@
     document.getElementById("guestList").innerHTML = guests.length ? guests.map(guest => `<tr><td>${escape(guest.nome || "—")}</td><td>${guest.confirmado === true ? "Confirmado" : guest.confirmado === false ? "Recusou" : "—"}</td><td>${escape(guest.acompanhantes ?? 0)}</td><td>${escape(guest.dataResposta || "—")}</td></tr>`).join("") : '<tr><td class="empty-cell" colspan="4">Nenhuma resposta disponível ainda.</td></tr>';
     loginScreen.hidden = true; dashboard.hidden = false;
   }
-  async function loadDashboard(token) {
-    const result = await callApi("event-dashboard", {_method:"GET", token, slug:event.slug});
-    if (!result.success) throw new Error(result.message || "Não foi possível carregar o painel.");
-    showDashboard(result.data);
-  }
   form.addEventListener("submit", async submitEvent => {
     submitEvent.preventDefault();
     if (!email.value.trim() || !password.value) { notify("Informe e-mail e senha para acessar o painel."); return; }
     if (submitting) return;
     submitting = true; submitButton.disabled = true;
-    const existingToken = null; // Explicit form submission always authenticates the supplied account.
-    let stage = existingToken ? "carregamento do painel" : "autenticação";
-    status.textContent = existingToken ? "Carregando painel…" : "Autenticando…";
+    let stage = "autenticação";
+    status.textContent = "Autenticando e carregando o painel…";
     try {
-      let token = existingToken;
-      if (!token) {
-        const result = await callApi("login", { email: email.value.trim(), senha: password.value });
-        token = result.data?.token;
-        if (!token) throw new Error("O serviço não retornou uma sessão válida.");
-        localStorage.setItem("gatekeeper.session-token", token);
-      }
-      stage = "carregamento do painel"; status.textContent = "Sessão confirmada. Carregando painel…";
-      await loadDashboard(token);
+      const result = await callApi("login-event-dashboard", { email: email.value.trim(), senha: password.value, slug: event.slug });
+      const token = result.data?.token;
+      if (!token) throw new Error("O serviço não retornou uma sessão válida.");
+      localStorage.setItem("gatekeeper.session-token", token);
+      showDashboard(result.data);
       status.textContent = ""; form.reset(); notify("Painel carregado com sucesso.");
     } catch (error) {
       status.textContent = "Falha na etapa de " + stage + ": " + error.message;
@@ -85,5 +75,10 @@
   document.getElementById("exportPdf").addEventListener("click", () => { try { window.EventExports.exportPdf(event, window.dashboardGuests || []); } catch (error) { notify(error.message); } });
   document.getElementById("exportReceptionPdf").addEventListener("click", () => { try { window.EventExports.exportPdf(event, window.dashboardGuests || [], true); } catch (error) { notify(error.message); } });
   document.getElementById("exportExcel").addEventListener("click", () => { try { window.EventExports.exportExcel(event, window.dashboardGuests || []); } catch (error) { notify(error.message); } });
-  document.addEventListener("DOMContentLoaded", async () => { const token = localStorage.getItem("gatekeeper.session-token"); if (!token) { showLogin(); return; } try { await loadDashboard(token); } catch (error) { showLogin(); status.textContent = "Não foi possível restaurar o painel: " + error.message; } });
+  document.addEventListener("DOMContentLoaded", () => {
+    // O painel é carregado junto com a autenticação; após uma recarga, pedimos
+    // o login novamente em vez de disparar a chamada antiga isolada.
+    localStorage.removeItem("gatekeeper.session-token");
+    showLogin();
+  });
 })();
