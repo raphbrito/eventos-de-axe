@@ -45,10 +45,10 @@
     submitEvent.preventDefault();
     if (!email.value.trim() || !password.value) { notify("Informe e-mail e senha para acessar o painel."); return; }
     try {
-      const result = await callApi("login", {email:email.value.trim(), senha:password.value});
+      const result = await callApi("login-event-dashboard", {email:email.value.trim(), senha:password.value, slug:event.slug});
       if (!result.success || !result.data?.token) throw new Error(result.message || "E-mail ou senha inválidos.");
       localStorage.setItem("gatekeeper.session-token", result.data.token);
-      await loadDashboard(result.data.token); form.reset(); notify("Painel carregado com sucesso.");
+      showDashboard(result.data); form.reset(); notify("Painel carregado com sucesso.");
     } catch (error) { notify(error.message || "Não foi possível entrar no painel."); password.focus(); }
   });
   document.getElementById("logoutButton").addEventListener("click", () => { localStorage.removeItem("gatekeeper.session-token"); showLogin(); notify("Sessão encerrada."); });
