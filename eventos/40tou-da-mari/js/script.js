@@ -17,6 +17,7 @@
     setText("eventTime", event.evento.horarioExibicao);
     setText("eventVenue", event.evento.local);
     setText("eventAddress", event.evento.endereco);
+    setText("locationText", event.localizacao.descricao);
     setText("outfit-title", event.traje.titulo);
     setText("outfitText", event.traje.descricao);
     setText("rsvpText", event.rsvp.texto);
