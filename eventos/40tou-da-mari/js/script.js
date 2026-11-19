@@ -58,6 +58,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     fillEventData();
+    setText("currentYear", new Date().getFullYear());
     initialiseArcade();
     $("rsvpLink").addEventListener("click", clickEvent => {
       if (event.rsvp.url) return;

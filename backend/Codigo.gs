@@ -611,19 +611,33 @@ function buildEventDashboard(event) {
   var sheet = SpreadsheetApp.openById(event.planilha_rsvp_id).getSheetByName(event.aba_rsvp);
   if (!sheet) throw apiError('A aba RSVP configurada nao foi encontrada.', 'RSVP_SHEET_NOT_FOUND', 404);
   var rows = sheet.getDataRange().getValues(); if (rows.length < 2) return { convidados: [], estatisticas: { respostas: 0, confirmados: 0, acompanhantes: 0, pessoas: 0, recusas: 0, taxaConfirmacao: 0, mediaAcompanhantes: 0, ultimaResposta: '-' } };
-  // Os títulos são definidos pelo Google Forms. Localizamos os campos essenciais
-  // pelo início da pergunta para que pequenas revisões no texto não quebrem o painel.
-  var h = rows[0].map(function (value) { return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim(); });
+  // Cada Forms pode usar textos decorados diferentes. Normalizamos os cabeçalhos
+  // e aceitamos as assinaturas conhecidas, sem alterar as respostas originais.
+  function normalizeRsvpText(value) {
+    return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  }
+  var h = rows[0].map(normalizeRsvpText);
   function findHeader(startsWith) {
-    return h.findIndex(function (header) { return header.indexOf(startsWith) === 0; });
+    var options = Array.isArray(startsWith) ? startsWith : [startsWith];
+    return h.findIndex(function (header) {
+      return options.some(function (option) { return header.indexOf(normalizeRsvpText(option)) === 0; });
+    });
   }
   var data = findHeader('carimbo de data/hora'),
-      name = findHeader('nome e sobrenome'),
-      attend = findHeader('voce podera comparecer'),
-      companions = findHeader('alem de voce, quantos acompanhantes');
+      name = findHeader(['nome e sobrenome', 'player identification']),
+      attend = findHeader(['voce podera comparecer', 'ready player one']),
+      companions = findHeader(['alem de voce quantos acompanhantes', 'player 2 player 3 player 4']);
   if ([data, name, attend, companions].indexOf(-1) !== -1) throw apiError('Os cabecalhos da planilha RSVP nao correspondem ao modelo.', 'INVALID_RSVP_HEADERS', 400);
   var guests = [], confirmed = 0, absent = 0, companionTotal = 0, last = null;
-  rows.slice(1).forEach(function (row) { var guestName = String(row[name] || '').trim(); if (!guestName) return; var yes = String(row[attend] || '').trim().toLowerCase() === 'sim'; var amount = yes ? (parseInt(String(row[companions] || '').match(/\d+/), 10) || 0) : 0; if (yes) { confirmed++; companionTotal += amount; } else absent++; if (row[data] && (!last || row[data] > last)) last = row[data]; guests.push({ nome: guestName, confirmado: yes, acompanhantes: amount, dataResposta: row[data] ? Utilities.formatDate(row[data], 'America/Sao_Paulo', 'dd/MM/yyyy HH:mm') : '' }); });
+  rows.slice(1).forEach(function (row) {
+    var guestName = String(row[name] || '').trim(); if (!guestName) return;
+    var answer = normalizeRsvpText(row[attend]);
+    var yes = /(^|\s)(sim|confirmo|confirmada|confirmado)(\s|$)/.test(answer);
+    var amount = yes ? (parseInt(String(row[companions] || '').match(/\d+/), 10) || 0) : 0;
+    if (yes) { confirmed++; companionTotal += amount; } else absent++;
+    if (row[data] && (!last || row[data] > last)) last = row[data];
+    guests.push({ nome: guestName, confirmado: yes, acompanhantes: amount, dataResposta: row[data] ? Utilities.formatDate(row[data], 'America/Sao_Paulo', 'dd/MM/yyyy HH:mm') : '' });
+  });
   guests.sort(function (a, b) { return a.nome.localeCompare(b.nome, 'pt-BR'); }); var total = guests.length;
   return { convidados: guests, estatisticas: { respostas: total, confirmados: confirmed, acompanhantes: companionTotal, pessoas: confirmed + companionTotal, recusas: absent, taxaConfirmacao: total ? Number((confirmed * 100 / total).toFixed(2)) : 0, mediaAcompanhantes: confirmed ? Number((companionTotal / confirmed).toFixed(2)) : 0, ultimaResposta: last ? Utilities.formatDate(last, 'America/Sao_Paulo', 'dd/MM/yyyy HH:mm') : '-' } };
 }

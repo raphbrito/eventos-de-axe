@@ -10,9 +10,16 @@
 
   const notify = message => { toast.textContent = message; toast.classList.add("is-visible"); clearTimeout(timer); timer = setTimeout(() => toast.classList.remove("is-visible"), 4200); };
   const callApi = async (route, payload) => {
-    const response = await fetch(`${window.EVENTOS_DE_AXE_API_URL}?route=${encodeURIComponent(route)}`, { method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify({...payload,route}) });
-    if (!response.ok) throw new Error("Não foi possível conectar ao serviço do painel.");
-    return response.json();
+    const request = async () => {
+      const response = await fetch(`${window.EVENTOS_DE_AXE_API_URL}?route=${encodeURIComponent(route)}`, { method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify({...payload,route}) });
+      if (!response.ok) throw new Error("Não foi possível conectar ao serviço do painel.");
+      return response.json();
+    };
+    try { return await request(); } catch (error) {
+      // Apps Script pode apresentar uma falha transitória na primeira chamada após inatividade.
+      if (error instanceof TypeError) return request();
+      throw error;
+    }
   };
   const escape = value => String(value ?? "").replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[char]));
   function showLogin() { dashboard.hidden = true; loginScreen.hidden = false; email.focus(); }
