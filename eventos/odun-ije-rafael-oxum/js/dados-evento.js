@@ -36,7 +36,8 @@ const EVENTO = {
         descricao: "Escolha seu aplicativo de navegação preferido e trace a melhor rota.",
         mensagem: "Toque em um dos botões abaixo para abrir automaticamente a localização do evento.",
         googleMaps: "https://www.google.com/maps/dir//R.+Mariana+do+Ros%C3%A1rio,+109+-+Vila+Recreio,+Mag%C3%A9+-+RJ,+25900-970/@-22.7749,-43.2914,17z/data=!4m18!1m8!3m7!1s0x990ad239448339:0x56e548d8d0f97534!2sR.+Mariana+do+Ros%C3%A1rio,+109+-+Vila+Recreio,+Mag%C3%A9+-+RJ,+25900-970!3b1!8m2!3d-22.6450252!4d-43.2053367!16s%2Fg%2F11x64xg80t!4m8!1m0!1m5!1m1!1s0x990ad239448339:0x56e548d8d0f97534!2m2!1d-43.2053367!2d-22.6450252!3e0!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D",
-        waze: "https://waze.com/ul/h75cr0vdgj"
+        waze: "https://waze.com/ul/h75cr0vdgj",
+        uber: "https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff%5Bnickname%5D=Igb%C3%A1%20%C3%80%E1%B9%A3%E1%BA%B9%20Iy%C3%A1%20Af%C3%A9f%C3%AA%20Igbin%20L%C3%B3run%20-%20%C3%80%E1%B9%A3%E1%BA%B9%20Esmeralda&dropoff%5Bformatted_address%5D=Rua%20Mariana%20do%20Ros%C3%A1rio%2C%20109%20-%20Ponte%20Preta%2C%20Mag%C3%A9%20-%20RJ%2C%2025900-970%2C%20Brasil"
     },
 
     telefone: "",

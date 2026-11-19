@@ -68,5 +68,6 @@
     });
     $("mapsButton").addEventListener("click", () => openRoute(event.localizacao.googleMaps));
     $("wazeButton").addEventListener("click", () => openRoute(event.localizacao.waze));
+    $("uberButton").addEventListener("click", () => openRoute(event.localizacao.uber));
   });
 })();

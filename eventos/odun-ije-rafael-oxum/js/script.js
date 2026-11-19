@@ -19,6 +19,7 @@ const dom = {
         rsvp: document.getElementById("btnRSVP"),
         googleMaps: document.getElementById("btnGoogleMaps"),
         waze: document.getElementById("btnWaze"),
+        uber: document.getElementById("btnUber"),
         calendar: document.getElementById("btnCalendar")
     },
     toast: {
@@ -136,6 +137,7 @@ function initializeButtons() {
     dom.buttons.rsvp?.addEventListener("click", () => openLink(EVENTO.rsvp?.link, "Formulário indisponível", "O formulário de confirmação ainda não foi disponibilizado."));
     dom.buttons.googleMaps?.addEventListener("click", () => openLink(EVENTO.localizacao?.googleMaps, "Localização indisponível", "O link do Google Maps ainda não foi configurado."));
     dom.buttons.waze?.addEventListener("click", () => openLink(EVENTO.localizacao?.waze, "Localização indisponível", "O link do Waze ainda não foi configurado."));
+    dom.buttons.uber?.addEventListener("click", () => openLink(EVENTO.localizacao?.uber, "Uber indisponível", "O link do Uber ainda não foi configurado."));
     dom.buttons.calendar?.addEventListener("click", downloadCalendarEvent);
 }
 
