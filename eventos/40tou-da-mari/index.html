@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12111a">
+  <meta name="description" content="40tou da Mari — Back to the 80's, Awesome Since 1987.">
+  <title>40tou da Mari — Back to the 80's</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/public-arcade.css">
+</head>
+<body>
+  <a class="skip-link" href="#convite">Pular para o convite</a>
+  <header class="hero" aria-labelledby="hero-title">
+    <div class="top-stripe" aria-hidden="true"></div>
+    <div class="hero-decoration deco-cassette" aria-hidden="true">📼</div>
+    <div class="hero-decoration deco-bolt" aria-hidden="true">⚡</div>
+    <div class="hero-decoration deco-disc" aria-hidden="true">💿</div>
+    <div class="hero-decoration deco-skate" aria-hidden="true">🛼</div>
+    <div class="hero-content">
+      <p class="tagline">Back to the 80's</p>
+      <h1 id="hero-title"><span>40TOU</span><span>DA MARI!</span></h1>
+      <p class="hero-copy">Awesome Since 1987 ✨<br>Quarenta anos de história, brilho e boas lembranças.</p>
+      <a class="button button-pink" href="#convite">Aperte start</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro section-padding" id="convite" aria-labelledby="intro-title">
+      <p class="eyebrow">Player especial</p>
+      <h2 id="intro-title">A Mari chega ao <span>LEVEL 40</span></h2>
+      <p>Prepare a energia, escolha seu melhor look e venha celebrar essa fase inesquecível. O convite completo está sendo desbloqueado aos poucos — mas sua presença já é parte do jogo.</p>
+    </section>
+
+    <section class="event-info section-padding" aria-labelledby="info-title">
+      <div class="section-heading"><p class="eyebrow">Informações da festa</p><h2 id="info-title">Próxima fase: <span>celebrar!</span></h2></div>
+      <div class="info-grid">
+        <article><span class="info-icon" aria-hidden="true">📅</span><h3>Data</h3><p id="eventDate">Data da festa a confirmar</p></article>
+        <article><span class="info-icon" aria-hidden="true">🕹️</span><h3>Horário</h3><p id="eventTime">Horário a confirmar</p></article>
+        <article><span class="info-icon" aria-hidden="true">📍</span><h3>Local</h3><p id="eventVenue">Local a confirmar</p></article>
+      </div>
+      <p class="info-note" id="eventAddress">O endereço será informado em breve.</p>
+    </section>
+
+    <section class="arcade-section section-padding" aria-labelledby="arcade-title">
+      <div class="section-heading section-heading--center"><p class="eyebrow">Contagem regressiva</p><h2 id="arcade-title">A máquina está <span>ligando</span></h2></div>
+      <div class="arcade-wrap" id="arcadeMachine" data-state="pending">
+        <div class="arcade-machine" aria-label="Fliperama retrô com contagem regressiva">
+          <div class="arcade-marquee">40TOU DA MARI!</div>
+          <div class="arcade-cabinet">
+            <div class="arcade-screen">
+              <div class="scanlines" aria-hidden="true"></div>
+              <p class="screen-kicker">HIGH SCORE</p>
+              <p class="screen-message" id="countdownMessage">AGUARDANDO<br>A PRÓXIMA FASE</p>
+              <p class="screen-subtitle" id="countdownSubtitle">A data da festa será anunciada em breve.</p>
+              <div class="countdown" aria-live="polite" aria-label="Contagem regressiva para o evento">
+                <div><strong id="days">--</strong><span>Dias</span></div><i>:</i>
+                <div><strong id="hours">--</strong><span>Horas</span></div><i>:</i>
+                <div><strong id="minutes">--</strong><span>Min</span></div><i>:</i>
+                <div><strong id="seconds">--</strong><span>Seg</span></div>
+              </div>
+            </div>
+            <div class="arcade-controls" aria-hidden="true"><span class="joystick"></span><span class="arcade-button button-one"></span><span class="arcade-button button-two"></span></div>
+          </div>
+          <div class="arcade-base"><span>PLAYER 01</span><span>LEVEL 40</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="outfit section-padding" aria-labelledby="outfit-title">
+      <div class="outfit-card"><span class="outfit-icon" aria-hidden="true">👾</span><div><p class="eyebrow">Look da noite</p><h2 id="outfit-title">Dress code em breve</h2><p id="outfitText">As orientações de vestimenta serão divulgadas junto com os detalhes da festa.</p></div></div>
+    </section>
+
+    <section class="rsvp section-padding" aria-labelledby="rsvp-title">
+      <p class="eyebrow">Continue?</p><h2 id="rsvp-title">Sua presença vale<br><span>muitos pontos</span></h2>
+      <p id="rsvpText">Confirme sua presença pelo formulário oficial para que a Mari possa preparar tudo com carinho.</p>
+      <a id="rsvpLink" class="button button-dark" target="_blank" rel="noopener noreferrer" href="#">Confirmar presença</a>
+    </section>
+
+    <section class="location section-padding" aria-labelledby="location-title">
+      <div><p class="eyebrow">Onde a festa acontece</p><h2 id="location-title">Mapa da <span>missão</span></h2><p id="locationText">Assim que o local for confirmado, os botões de rota serão liberados por aqui.</p></div>
+      <div class="route-actions"><button id="mapsButton" class="button button-cyan" type="button">Google Maps</button><button id="wazeButton" class="button button-lime" type="button">Abrir no Waze</button></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><p><strong>40TOU DA MARI</strong> · Back to the 80's · Awesome Since 1987</p><p>Feito para celebrar boas histórias e novas fases.</p><a href="dashboard.html">Área administrativa</a></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/dados-evento.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

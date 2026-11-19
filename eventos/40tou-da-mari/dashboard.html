@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12111a">
+  <title>Painel administrativo | 40tou da Mari</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard-arcade.css">
+</head>
+<body>
+  <main class="login-screen" id="login" hidden>
+    <section class="login-card" aria-labelledby="login-title">
+      <a href="index.html" class="back-link">Voltar ao convite</a>
+      <p class="pixel-label">PLAYER 01 · ÁREA RESERVADA</p>
+      <h1 id="login-title">40TOU<br><span>DA MARI!</span></h1>
+      <p>Entre para acompanhar as confirmações do evento.</p>
+      <form id="loginForm" class="login-form">
+        <label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="username" required>
+        <label for="password">Senha</label><input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button type="submit">Entrar no painel</button>
+      </form>
+    </section>
+  </main>
+
+  <main class="dashboard" id="dashboard" hidden>
+    <header class="dash-header"><a href="index.html" class="dash-brand">40TOU <span>DA MARI!</span></a><nav><a href="index.html">Página pública</a><button type="button" id="logoutButton">Sair</button></nav></header>
+    <section class="dash-hero"><p class="pixel-label">HIGH SCORE · GESTÃO DE CONVIDADOS</p><h1>Painel do <span>evento</span></h1><p>Dados recebidos pelo formulário oficial de presença.</p></section>
+    <section class="stats" aria-labelledby="stats-title"><div class="section-title"><p class="pixel-label">LEVEL 40</p><h2 id="stats-title">Placar da festa</h2><p id="updatedAt">Carregando dados…</p></div><div class="stats-grid">
+      <article><span>Respostas</span><strong id="responses">—</strong></article><article><span>Confirmados</span><strong id="confirmed">—</strong></article><article><span>Recusas</span><strong id="declined">—</strong></article><article><span>Acompanhantes</span><strong id="companions">—</strong></article><article class="wide"><span>Pessoas previstas</span><strong id="people">—</strong><small>confirmados + acompanhantes</small></article>
+    </div></section>
+    <section class="guests" aria-labelledby="guests-title"><div class="section-title"><p class="pixel-label">PLAYER LIST</p><h2 id="guests-title">Respostas recebidas</h2><p>Os dados são carregados de forma segura pela plataforma Eventos de Axé.</p></div><div class="export-actions" aria-label="Exportar lista"><button id="exportPdf" type="button">Lista PDF</button><button id="exportReceptionPdf" type="button">Recepção PDF</button><button id="exportExcel" type="button">Planilha Excel</button></div><div class="table-wrap" tabindex="0"><table><thead><tr><th>Convidado</th><th>Resposta</th><th>Acompanhantes</th><th>Recebida em</th></tr></thead><tbody id="guestList"></tbody></table></div></section>
+    <footer>Eventos de Axé · 40tou da Mari · Back to the 80's</footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="../../assets/js/config.js"></script>
+  <script src="js/dados-evento.js"></script>
+  <script src="js/exports.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
