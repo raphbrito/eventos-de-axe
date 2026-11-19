@@ -23,9 +23,8 @@ window.EVENTO_40TOU = {
     descricao: "As orientações de vestimenta serão divulgadas junto com os detalhes da festa."
   },
   rsvp: {
-    // O formulário informado inicialmente está indisponível. Cole aqui o novo link público quando ele for criado ou reativado.
-    url: "",
-    texto: "O formulário oficial de confirmação será liberado em breve."
+    url: "https://forms.gle/NYB7mH3E3HbtuwLs9",
+    texto: "Confirme sua presença pelo formulário oficial para que a Mari possa preparar tudo com carinho."
   },
   localizacao: {
     descricao: "Escolha seu aplicativo de navegação preferido e trace sua rota até a festa.",
