@@ -642,6 +642,24 @@ function buildEventDashboard(event) {
   return { convidados: guests, estatisticas: { respostas: total, confirmados: confirmed, acompanhantes: companionTotal, pessoas: confirmed + companionTotal, recusas: absent, taxaConfirmacao: total ? Number((confirmed * 100 / total).toFixed(2)) : 0, mediaAcompanhantes: confirmed ? Number((companionTotal / confirmed).toFixed(2)) : 0, ultimaResposta: last ? Utilities.formatDate(last, 'America/Sao_Paulo', 'dd/MM/yyyy HH:mm') : '-' } };
 }
 function getEventDashboard(payload, token) { requireFields(payload, ['slug']); var event = getEventBySlug(payload.slug); if (!event || event.status !== 'ATIVO') throw apiError('Evento nao encontrado.', 'EVENT_NOT_FOUND', 404); var context = canAccessEvent(token, event), dashboard = buildEventDashboard(event); return success('Dashboard carregado.', { event: { slug: event.slug, nome: event.nome }, user: publicUser(context.user), convidados: dashboard.convidados, estatisticas: dashboard.estatisticas, atualizadoEm: Utilities.formatDate(new Date(), 'America/Sao_Paulo', 'dd/MM/yyyy HH:mm') }); }
+// Faz login e carrega o painel em uma única chamada. Isso evita que o navegador
+// precise executar duas requisições seguidas ao Apps Script durante o acesso.
+function loginEventDashboard(payload) {
+  requireFields(payload, ['slug']);
+  var loginResult = login(payload);
+  var event = getEventBySlug(payload.slug);
+  if (!event || event.status !== 'ATIVO') throw apiError('Evento nao encontrado.', 'EVENT_NOT_FOUND', 404);
+  var context = canAccessEvent(loginResult.data.token, event);
+  var dashboard = buildEventDashboard(event);
+  return success('Login realizado com sucesso.', {
+    token: loginResult.data.token,
+    event: { slug: event.slug, nome: event.nome },
+    user: publicUser(context.user),
+    convidados: dashboard.convidados,
+    estatisticas: dashboard.estatisticas,
+    atualizadoEm: Utilities.formatDate(new Date(), 'America/Sao_Paulo', 'dd/MM/yyyy HH:mm')
+  });
+}
 
 
 // ===== backend\apps-script\routes\Routes.gs =====
@@ -657,6 +675,7 @@ function routeRequest(method, route, payload, token) {
     'GET:events': function () { return listEvents(token); },
     'GET:my-events': function () { return listMyEvents(token); },
     'GET:event-dashboard': function () { return getEventDashboard(payload, token); },
+    'POST:login-event-dashboard': function () { return loginEventDashboard(payload); },
     'GET:admin-users': function () { return listUsersForAdmin(token); },
     'POST:admin-delete-user': function () { return deleteUserForAdmin(payload, token); },
     'POST:login': function () { return login(payload); },
