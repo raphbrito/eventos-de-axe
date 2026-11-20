@@ -29,7 +29,14 @@
       <section id="recursos" class="feature-band"><div class="feature-band__heading"><h2>Menos dispersão. Mais espaço para o que realmente importa.</h2></div>
         <div class="feature-list"><article><h3>Convites com identidade</h3><p>Uma página pública que apresenta a celebração com linguagem, informações e visual próprios.</p></article><article><h3>RSVP organizado</h3><p>Confirmações de presença centralizadas para preparar a recepção com mais segurança.</p></article><article><h3>Gestão tranquila</h3><p>Uma área administrativa para acompanhar respostas, listas e dados essenciais do evento.</p></article></div>
       </section>
-      <section id="eventos" class="home-section"><div class="event-spotlight"><div class="event-spotlight__image" role="img" aria-label="Arte do convite do Odún Ìjé de Rafael de Oxum"></div><div class="event-spotlight__content"><p class="event-kicker">Evento em destaque</p><h2>Odún Ìjé · Rafael de Oxum</h2><p>Uma página criada para informar, acolher e acompanhar uma celebração de fé, ancestralidade e continuidade.</p><a class="button" href="eventos/odun-ije-rafael-oxum/">Ver página pública</a></div></div></section>
+      <section id="eventos" class="home-section events-showcase" aria-labelledby="eventsTitle">
+        <div class="events-showcase__heading"><div><p class="event-kicker">Celebrações hospedadas</p><h2 id="eventsTitle">Encontros que já têm lugar para acontecer.</h2></div><p>Conheça as páginas públicas criadas no Eventos de Axé. Esta vitrine é atualizada automaticamente a partir dos eventos ativos cadastrados na plataforma.</p></div>
+        <div class="events-carousel" aria-label="Eventos hospedados">
+          <div id="publicEventsTrack" class="events-carousel__track" aria-live="polite"><p class="events-carousel__message">Carregando celebrações...</p></div>
+          <div class="events-carousel__controls"><button id="publicEventsPrevious" type="button" class="events-carousel__control" aria-label="Ver eventos anteriores">Anteriores</button><button id="publicEventsNext" type="button" class="events-carousel__control" aria-label="Ver próximos eventos">Próximos</button></div>
+        </div>
+        <p id="publicEventsStatus" class="events-showcase__status">A vitrine mostra os eventos públicos ativos.</p>
+      </section>
       <section class="platform-statement"><h2>Cada celebração mantém sua personalidade. A organização permanece simples, segura e centralizada.</h2><p>O Eventos de Axé cresce junto com as comunidades que o utilizam, desenvolvendo recursos com escuta, clareza e respeito às tradições.</p></section>
       <footer class="home-footer"><p>Eventos de Axé · uma solução da Topázio Soluções Tecnológicas</p><p>Projeto independente, aberto e em constante evolução.</p></footer>
     </section>`;
@@ -58,6 +65,55 @@
     } catch (error) { target.innerHTML = `<div class="empty-state">${escapeHtml(error.message)}</div>`; }
   }
 
+  function bindPublicEventsCarousel(events) {
+    const track = document.querySelector('#publicEventsTrack');
+    const previous = document.querySelector('#publicEventsPrevious');
+    const next = document.querySelector('#publicEventsNext');
+    if (!track || !previous || !next) return;
+
+    const move = direction => {
+      const card = track.querySelector('.events-carousel__card');
+      const distance = card ? card.getBoundingClientRect().width + 20 : track.clientWidth;
+      track.scrollBy({ left: distance * direction, behavior: 'smooth' });
+    };
+    const updateControls = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const canScroll = maxScroll > 4;
+      previous.disabled = !canScroll || track.scrollLeft <= 4;
+      next.disabled = !canScroll || track.scrollLeft >= maxScroll - 4;
+    };
+    previous.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    track.addEventListener('scroll', updateControls, { passive: true });
+    window.addEventListener('resize', updateControls, { passive: true });
+    requestAnimationFrame(updateControls);
+  }
+
+  async function loadPublicEvents() {
+    const track = document.querySelector('#publicEventsTrack');
+    const status = document.querySelector('#publicEventsStatus');
+    if (!track || !status) return;
+    try {
+      const result = await Api.request('public-events', 'GET');
+      const events = result.data?.events || result.events || [];
+      if (!events.length) {
+        track.innerHTML = '<p class="events-carousel__message">Ainda não há celebrações públicas para mostrar.</p>';
+        status.textContent = 'Quando um evento for ativado, ele aparecerá aqui automaticamente.';
+        return;
+      }
+      track.innerHTML = events.map(event => {
+        const slug = escapeHtml(event.slug || '');
+        const name = escapeHtml(event.nome || event.slug || 'Celebração');
+        return `<article class="events-carousel__card"><p class="events-carousel__eyebrow">Evento hospedado</p><h3>${name}</h3><p>Informações, confirmação de presença e orientações reunidas em uma página feita para este encontro.</p><a class="button" href="${publicUrl(slug)}">Ver convite</a></article>`;
+      }).join('');
+      status.textContent = `${events.length} ${events.length === 1 ? 'celebração disponível' : 'celebrações disponíveis'} nesta vitrine.`;
+      bindPublicEventsCarousel(events);
+    } catch (error) {
+      track.innerHTML = '<p class="events-carousel__message">Não foi possível carregar as celebrações neste momento.</p>';
+      status.textContent = 'Tente atualizar a página em alguns instantes.';
+    }
+  }
+
   function bindLogin() {
     document.querySelector('#loginForm')?.addEventListener('submit', async event => {
       event.preventDefault(); const form = event.currentTarget; const message = document.querySelector('#formMessage');
@@ -78,7 +134,7 @@
   }
 
   function bindNavigation() { navigation.querySelector('[data-action="logout"]')?.addEventListener('click', () => { Session.clear(); location.hash = '#/'; }); }
-  function render() { const activeRoute = currentRoute(); renderNavigation(); app.innerHTML = activeRoute === 'entrar' ? loginView() : activeRoute === 'admin' ? adminView() : homeView(); bindNavigation(); if (activeRoute === 'entrar') bindLogin(); if (activeRoute === 'admin') bindAdmin(); }
+  function render() { const activeRoute = currentRoute(); renderNavigation(); app.innerHTML = activeRoute === 'entrar' ? loginView() : activeRoute === 'admin' ? adminView() : homeView(); bindNavigation(); if (activeRoute === 'entrar') bindLogin(); if (activeRoute === 'admin') bindAdmin(); if (activeRoute === 'inicio') loadPublicEvents(); }
   window.addEventListener('hashchange', () => { if (location.hash.startsWith('#/')) render(); });
   render();
 })();

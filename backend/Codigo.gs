@@ -661,6 +661,26 @@ function loginEventDashboard(payload) {
   });
 }
 
+// Diagnóstico manual temporário para conferir a integração do RSVP da Mari.
+// Execute pelo editor do Apps Script; não altera planilhas, usuários ou respostas.
+function diagnosticarDashboardMari() {
+  beginRequestContext();
+  var event = getEventBySlug('40tou-da-mari');
+  if (!event) throw new Error('O evento 40tou-da-mari não foi encontrado na aba Eventos.');
+  console.log('Evento encontrado: ' + JSON.stringify({
+    slug: event.slug,
+    planilhaRsvpId: event.planilha_rsvp_id,
+    abaRsvp: event.aba_rsvp,
+    status: event.status
+  }));
+  var dashboard = buildEventDashboard(event);
+  console.log('Diagnóstico concluído: ' + JSON.stringify({
+    respostas: dashboard.estatisticas.respostas,
+    confirmados: dashboard.estatisticas.confirmados
+  }));
+  return dashboard.estatisticas;
+}
+
 
 // ===== backend\apps-script\routes\Routes.gs =====
 function routeRequest(method, route, payload, token) {
